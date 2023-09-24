@@ -6,29 +6,12 @@ const instance = axios.create({
   baseURL: "http://localhost:8000/api",
 });
 
-const diaries = [
-  {
-    "date": "2023.01.01 (wed)",
-    "label": "relation",
-    "feeling": "happy",
-    "content": "I am a happy boy",
-    "id": "650ea03540e88704ebae796e"
-  },
-  {
-    "date": "2023.01.05 (sun)",
-    "label": "societies",
-    "feeling": "angry",
-    "content": "I am a angry boy",
-    "id": "650ea03540e88704ebae796a"
-  }
-]
-
 async function main() {
   
   // get datas from backend
   try {
-    // const todos = await getTodos();
-    // console.log(todos)
+    const diaries = await getDiaries();
+    console.log(diaries)
     diaries.forEach((diary) => renderDiary(diary));
   } catch (error) {
     console.log(error)
@@ -40,42 +23,31 @@ async function main() {
 
 function setupEventListeners() {
   const section = document.querySelector("section")
-  //console.log(section)
   const redirectToDiaries = section.querySelectorAll(".diary-item");
-  //console.log(redirectToDiaries)
   redirectToDiaries.forEach((redirectToDiary) => {
-    // const parameters = {
-    //   date: redirectToDiary.querySelector(".diary-date").textContent,
-    //   label: redirectToDiary.querySelector(".diary-label").textContent,
-    //   feeling: redirectToDiary.querySelector(".diary-feeling").textContent,
-    //   content:  redirectToDiary.querySelector(".diary-content").textContent,
-    // }
     const date = redirectToDiary.querySelector(".diary-date").textContent
     const label = redirectToDiary.querySelector(".diary-label").textContent
     const feeling = redirectToDiary.querySelector(".diary-feeling").textContent
     const content = redirectToDiary.querySelector(".diary-content").textContent
+    const id = redirectToDiary.id
     redirectToDiary.addEventListener("dblclick", function () {
     var url = "diary.html?date=" + encodeURIComponent(date)
     + "&label=" + encodeURIComponent(label) 
     + "&feeling=" + encodeURIComponent(feeling) 
-    + "&content=" + encodeURIComponent(content);
+    + "&content=" + encodeURIComponent(content)
+    + "&id=" + encodeURIComponent(id);
     window.location.href = url;
     });
   })
-//   redirectToDiaryButton.addEventListener("dblclick", function () {
-//     var url = "diary.html?parameter=" + encodeURIComponent(parameterValue);
-//     window.location.href = url;
-// });
 }
 
 function renderDiary(diary) {
-  // console.log(diary)
   const item = createDiaryElement(diary);
   diaryList.appendChild(item);
 }
 
 function createDiaryElement(diary) {
-  const item = diaryTemplate.content.cloneNode(true);  // copy dom node
+  const item = diaryTemplate.content.cloneNode(true);
   const container = item.querySelector(".diary-item");
   container.id = diary.id;
   const date = item.querySelector(".diary-date");
@@ -87,6 +59,11 @@ function createDiaryElement(diary) {
   const content = item.querySelector(".diary-content")
   content.innerText = diary.content;
   return item;
+}
+
+async function getDiaries() {
+  const response = await instance.get("/diaries");
+  return response.data;
 }
 
 main();

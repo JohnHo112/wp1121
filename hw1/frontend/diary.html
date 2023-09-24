@@ -2,26 +2,44 @@
     <head>
         <title>diary</title>
         <script defer src="diary.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"
+        integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        ></script>
     </head>
+    
     <body>
         <div id="button-container">
             <button id="back-button" onclick="location.href = 'index.html'"> BACK</button>
-            <span id="view-mode">
-                <button id="edit-button">EDIT MODE</button>
-            </span>
             <span id="edit-mode">
-                <button id="view-button">VIEW MODE</button>
+                <button id="edit-button">EDIT MODE</button>
                 <button id="save-button">SAVE</button>
                 <button id="cancel-button">CANCEL</button>
             </span>
         </div>
         <div id="diary">
             <div id="" class="diary-contaioner">
-                <span class="diar-date"> date </span>
-                <span class="diar-label"> label </span>
-                <span class="diar-feeling"> feeling </span>
+                <span> date: </span>
+                <input class="diary-date"></span>
+                <span> label: </span>
+                <select class="diary-label">
+                    <option value="default"> -- </option>
+                    <option value="learning"> learning </option>
+                    <option value="relation"> relation </option>
+                    <option value="societies"> societies </option>
+                </select>
+                <span> feeling: </span>
+                <select class="diary-feeling">
+                    <option value="default"> -- </option>
+                    <option value="happy"> happy </option>
+                    <option value="angry"> angry </option>
+                    <option value="sad"> sad </option>
+                </select>
             </div>
-            <p class="diary-content"> content</p>
+            <p> content: </p>
+            <textarea class="diary-content"> content </p>
         </div>
     </body>
 </html>
