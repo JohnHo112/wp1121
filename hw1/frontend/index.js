@@ -7,7 +7,6 @@ const instance = axios.create({
 });
 
 async function main() {
-  
   // get datas from backend
   try {
     const diaries = await getDiaries();
@@ -65,5 +64,7 @@ async function getDiaries() {
   const response = await instance.get("/diaries");
   return response.data;
 }
+
+
 
 main();

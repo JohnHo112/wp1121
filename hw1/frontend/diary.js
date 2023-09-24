@@ -5,16 +5,18 @@ const instance = axios.create({
 var mode = true  // false is edit mode, true is view mode
 
 // get the parameters from home page
-const id = getParameterByName("id")
-const date = getParameterByName("date")
-const label = getParameterByName("label")
-const feeling = getParameterByName("feeling")
-const content = getParameterByName("content")
+var id = getParameterByName("id")
+var date = getParameterByName("date")
+var label = getParameterByName("label")
+var feeling = getParameterByName("feeling")
+var content = getParameterByName("content")
 
 // edit mode buttons
 const editButton = document.querySelector("#edit-button")
 const saveButton = document.querySelector("#save-button")
 const cancelButton = document.querySelector("#cancel-button")
+
+var currentMode = document.querySelector("#current-mode")
 
 // all inputs
 const container = document.querySelector(".diary-contaioner")
@@ -22,6 +24,9 @@ const dateNode = container.querySelector(".diary-date")
 const labelNode = container.querySelector(".diary-label")
 const feelingNode = container.querySelector(".diary-feeling")
 const contentNode = document.querySelector(".diary-content")
+
+// date dormat
+const dateFormat = getDateFormat()
 
 async function main() {
     await enterPage()
@@ -53,6 +58,8 @@ function changeMode(mode){
     contentNode.disabled = mode
     saveButton.disabled = mode
     cancelButton.disabled = mode
+    if (mode === true) {currentMode.innerText = "View"}
+    else {currentMode.innerText = "Edit"}
 }
 
 function saveDiary(){
@@ -62,6 +69,7 @@ function saveDiary(){
     if (id === null){
         createDiary(data)
         console.log("create new diary")
+        
     } else {
         updateTodoStatus(id, data)
         console.log("update diary")
@@ -74,8 +82,8 @@ async function createDiary(data) {
   }
   
 async function updateTodoStatus(id, data) {
-const response = await instance.put(`/diaries/${id}`, data);
-return response.data;
+    const response = await instance.put(`/diaries/${id}`, data);
+    return response.data;
 }
 
 function cancelSave(){
@@ -117,11 +125,25 @@ function enterPage(){
 
 function renderTheDiary(date, label, feeling, content, mode){
     container.id = id
-    dateNode.value = date
+    dateNode.value = dateFormat
     labelNode.value = label
     feelingNode.value = feeling
     contentNode.value = content
     changeMode(mode)
 }  
+
+function getDateFormat(){
+    let weekdays = "Sun., Mon., Tue., Wed., Thu., Fri., Sat.".split(",");
+    const d = new Date()
+    var year = d.getFullYear()
+    var month = d.getMonth()+1
+    var date = d.getDate()
+    month = month < 10 ? '0' + month : date
+    date = date < 10 ? '0' + date : date
+    var day = d.getDay()
+    var dateFormat = year + "." + month + "." + date + " " + "(" + weekdays[day] + ")"
+    console.log(dateFormat)
+    return dateFormat
+  }
 
 main()

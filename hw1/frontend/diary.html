@@ -9,7 +9,7 @@
         referrerpolicy="no-referrer"
         ></script>
     </head>
-    
+
     <body>
         <div id="button-container">
             <button id="back-button" onclick="location.href = 'index.html'"> BACK</button>
@@ -18,27 +18,29 @@
                 <button id="save-button">SAVE</button>
                 <button id="cancel-button">CANCEL</button>
             </span>
+            <span>MODE: </span>
+            <span id="current-mode"> e</span>
         </div>
         <div id="diary">
             <div id="" class="diary-contaioner">
-                <span> date: </span>
+                <span> Date: </span>
                 <input class="diary-date"></span>
-                <span> label: </span>
+                <span> Tag: </span>
                 <select class="diary-label">
                     <option value="default"> -- </option>
-                    <option value="learning"> learning </option>
-                    <option value="relation"> relation </option>
-                    <option value="societies"> societies </option>
+                    <option value="Academic"> Academic </option>
+                    <option value="Social"> Social </option>
+                    <option value="Clubs"> Clubs </option>
                 </select>
-                <span> feeling: </span>
+                <span> Feeling: </span>
                 <select class="diary-feeling">
                     <option value="default"> -- </option>
-                    <option value="happy"> happy </option>
-                    <option value="angry"> angry </option>
-                    <option value="sad"> sad </option>
+                    <option value="Happy"> Happy </option>
+                    <option value="Angry"> Angry </option>
+                    <option value="Sad"> Sad </option>
                 </select>
             </div>
-            <p> content: </p>
+            <p> Content: </p>
             <textarea class="diary-content"> content </p>
         </div>
     </body>
