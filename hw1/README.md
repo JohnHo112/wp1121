@@ -30,5 +30,9 @@ yarn start
 Sometime connect database having error (SSL internet error...). You can run backend again.
 
 ## Frontend
+```
+cd frontend
+yarn
+```
 Open `frontend/index.html`
 
