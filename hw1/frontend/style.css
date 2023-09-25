@@ -1,8 +1,7 @@
 :root {
   --todo-intput-height: 3rem;
-  --todo-intput-font-size: 2rem;
+  --todo-intput-font-size: 1rem;
 }
-
 body {
   background-color: #f4f3e1;
   max-width: 600px;
@@ -10,74 +9,55 @@ body {
   margin: 0 auto;
   margin-top: 15vh;
 }
-
 h1 {
   text-align: center;
   font-size: 3rem;
 }
-
-#todo-input-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-input#todo-input {
-  flex-grow: 1;
-}
-input#todo-input,
-button#todo-add {
+button#add-new-button {
   height: var(--todo-intput-height);
   font-size: var(--todo-intput-font-size);
   border-radius: 0.5rem;
   padding: 0 0.5rem;
 }
-textarea#todo-description-input {
-  width: 100%;
-  margin-top: 1rem;
-  height: 5rem;
-  resize: none;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
+#illustrate {
+  font-size: 1.2rem
 }
 
-#todos {
-  margin-top: 2rem;
+#diaries {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   padding: 0 2rem;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
-.todo-item {
+.diary-item {
   background-color: #fff;
   border: 1px solid #ccc;
   padding: 0.5rem;
   border-radius: 1rem;
 }
-.todo-item summary {
+.diary-item summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.todo-item summary > div {
+.diary-item summary > div {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.todo-title {
+.diary-date {
   margin: 0;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
-.todo-description {
+.diary-content {
   margin: 0;
   font-size: 1rem;
   padding: 0 1rem;
 }
-.todo-description:before {
+.diary-content:before {
   content: "";
   display: block;
   height: 1px;
@@ -85,20 +65,39 @@ textarea#todo-description-input {
   background-color: #ccc;
   margin: 0.5rem 0;
 }
-.todo-item input[type="checkbox"] {
-  height: 1.25rem;
-  width: 1.25rem;
-  cursor: pointer;
+button#back-button,
+button#edit-button,
+button#save-button, 
+button#cancel-button
+{
+  height: 2rem;
+  font-size: var(--todo-intput-font-size);
+  border-radius: 0.5rem;
+  padding: 0 1rem;
 }
-.todo-item button {
-  font-size: 1rem;
-  border-radius: 999px;
-  padding: 0.5rem;
-  border: none;
-  cursor: pointer;
-  background-color: #f55;
-  color: #fff;
+#mode{
+  height: 3rem;
+  font-size: var(--todo-intput-font-size);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+
 }
-.todo-item button:hover {
-  background-color: #f77;
+#mode-label, #current-mode{
+  font-size: var(--todo-intput-font-size);
+}
+#diary{
+  font-size: 1.5rem;
+}
+.diary-label,
+.diary-feeling{
+  height: 2rem;
+  width: 8rem;
+  font-size: 1.2rem;
+}
+.diary-content{
+  height: 30%;
+  width: 80%;
+  font-size: var(--todo-intput-font-size);
 }
