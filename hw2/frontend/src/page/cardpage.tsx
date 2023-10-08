@@ -107,6 +107,7 @@ export default function Cardpage(){
           </Typography>
         </button>
       )}
+
       <Paper className="flex flex-col p-2" elevation={50}>
         <Grid container spacing={5} alignItems="center">
           <Grid item>
@@ -127,9 +128,13 @@ export default function Cardpage(){
         </Grid>
       </Paper>
       <br/>
+
       <div className="flex flex-col gap-4">
-        <Card name="123" singer="456" link="798" />
-        <Card name="abc" singer="def" link="ghi" />
+        {
+          selectedList.cards.map((card) => (
+            <Card id={card.id} name={card.name} singer={card.singer} link={card.link} listId={card.listId}/>
+          ))
+        }
       </div>
       <div>
 				<Button variant="contained" className="w-50" onClick={() => setOpenNewCardDialog(true)}>
@@ -141,6 +146,7 @@ export default function Cardpage(){
 					Delete
 				</Button>
 			</div>
+
       <CardDialog
         variant="new"
         open={openNewCardDialog}

@@ -45,10 +45,9 @@ export default function CardDialog(props: CardDialogProps) {
   const singer = variant === "edit" ? props.singer : "";
   const link = variant === "edit" ? props.link : "";
 
-  const [editingTitle, setEditingTitle] = useState(variant === "new");
-  const [editingDescription, setEditingDescription] = useState(
-    variant === "new",
-  );
+  const [editingName, setEditingName] = useState(variant === "new");
+  const [editingSinger, setEditingSinger] = useState(variant === "new");
+  const [editingLink, setEditingLink] = useState(variant === "new",);
 
   // using a state variable to store the value of the input, and update it on change is another way to get the value of a input
   // however, this method is not recommended for large forms, as it will cause a re-render on every change
@@ -116,30 +115,6 @@ export default function CardDialog(props: CardDialogProps) {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle className="flex gap-4">
-        {editingTitle ? (
-          <ClickAwayListener
-            onClickAway={() => {
-              if (variant === "edit") {
-                setEditingTitle(false);
-              }
-            }}
-          >
-            <Input
-              autoFocus
-              defaultValue={name}
-              onChange={(e) => setNewName(e.target.value)}
-              className="grow"
-              placeholder="Enter a title for this card..."
-            />
-          </ClickAwayListener>
-        ) : (
-          <button
-            onClick={() => setEditingTitle(true)}
-            className="w-full rounded-md p-2 hover:bg-white/10"
-          >
-            <Typography className="text-start">{newName}</Typography>
-          </button>
-        )}
         <Select
           value={newListId}
           onChange={(e) => setNewListId(e.target.value)}
@@ -157,29 +132,79 @@ export default function CardDialog(props: CardDialogProps) {
         )}
       </DialogTitle>
       <DialogContent className="w-[600px]">
-        {editingDescription ? (
-          <ClickAwayListener
-            onClickAway={() => {
-              if (variant === "edit") {
-                setEditingDescription(false);
-              }
-            }}
-          >
-            <textarea
-              className="bg-white/0 p-2"
-              autoFocus
-              defaultValue={singer}
-              placeholder="Add a more detailed description..."
-              onChange={(e) => setNewSinger(e.target.value)}
-            />
-          </ClickAwayListener>
-        ) : (
-          <button
-            onClick={() => setEditingDescription(true)}
-            className="w-full rounded-md p-2 hover:bg-white/10"
-          >
-            <Typography className="text-start">{newSinger}</Typography>
-          </button>
+        {editingName ? (
+            <ClickAwayListener
+              onClickAway={() => {
+                if (variant === "edit") {
+                  setEditingName(false);
+                }
+              }}
+            >
+              <Input
+                autoFocus
+                defaultValue={name}
+                onChange={(e) => setNewName(e.target.value)}
+                className="grow"
+                placeholder="Enter a name for this card..."
+              />
+            </ClickAwayListener>
+          ) : (
+            <button
+              onClick={() => setEditingName(true)}
+              className="w-full rounded-md p-2 hover:bg-white/10"
+            >
+              <Typography className="text-start">{newName}</Typography>
+            </button>
+        )}
+        <br/>
+        {editingSinger ? (
+            <ClickAwayListener
+              onClickAway={() => {
+                if (variant === "edit") {
+                  setEditingSinger(false);
+                }
+              }}
+            >
+              <Input
+                autoFocus
+                defaultValue={name}
+                onChange={(e) => setNewSinger(e.target.value)}
+                className="grow"
+                placeholder="Enter a singer for this card..."
+              />
+            </ClickAwayListener>
+          ) : (
+            <button
+              onClick={() => setEditingSinger(true)}
+              className="w-full rounded-md p-2 hover:bg-white/10"
+            >
+              <Typography className="text-start">{newSinger}</Typography>
+            </button>
+        )}
+        <br/>
+        {editingLink ? (
+            <ClickAwayListener
+              onClickAway={() => {
+                if (variant === "edit") {
+                  setEditingLink(false);
+                }
+              }}
+            >
+              <Input
+                autoFocus
+                defaultValue={name}
+                onChange={(e) => setNewLink(e.target.value)}
+                className="grow"
+                placeholder="Enter a link for this card..."
+              />
+            </ClickAwayListener>
+          ) : (
+            <button
+              onClick={() => setEditingLink(true)}
+              className="w-full rounded-md p-2 hover:bg-white/10"
+            >
+              <Typography className="text-start">{newLink}</Typography>
+            </button>
         )}
         <DialogActions>
           <Button onClick={handleSave}>save</Button>
