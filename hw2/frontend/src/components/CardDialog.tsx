@@ -49,9 +49,6 @@ export default function CardDialog(props: CardDialogProps) {
   const [editingSinger, setEditingSinger] = useState(variant === "new");
   const [editingLink, setEditingLink] = useState(variant === "new",);
 
-  // using a state variable to store the value of the input, and update it on change is another way to get the value of a input
-  // however, this method is not recommended for large forms, as it will cause a re-render on every change
-  // you can read more about it here: https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
   const [newName, setNewName] = useState(name);
   const [newSinger, setNewSinger] = useState(singer);
   const [newLink, setNewLink] = useState(link);
@@ -81,8 +78,7 @@ export default function CardDialog(props: CardDialogProps) {
         ) {
           return;
         }
-        // typescript is smart enough to know that if variant is not "new", then it must be "edit"
-        // therefore props.cardId is a valid value
+        
         await updateCard(props.cardId, {
           name: newName,
           singer: newSinger,

@@ -14,9 +14,17 @@ export type CardListProps = {
   name: string;
   description: string;
   cards: CardProps[];
+};
+
+export type CardListPropsI = {
+  id: string;
+  name: string;
+  description: string;
+  cards: CardProps[];
   deleteMode: boolean;
   setDeleteMode: React.Dispatch<React.SetStateAction<boolean>>
 };
+
 
 export type SelectedListProps = {
   id: string;
@@ -26,7 +34,7 @@ export type SelectedListProps = {
 }
 
 
-const CardList = ({id, name, description, cards, deleteMode, setDeleteMode}: CardListProps) => {
+const CardList = ({id, name, description, cards, deleteMode, setDeleteMode}: CardListPropsI) => {
   const { setCardPageOpen } = useContext(pageControlContext)
   const { setSelectedList } = useContext(selectedListContext)
   const { fetchLists } = useCards();

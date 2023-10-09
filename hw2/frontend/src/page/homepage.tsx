@@ -16,7 +16,6 @@ const Homepage = () => {
     fetchLists();
     fetchCards();
   }, [fetchCards, fetchLists]);
-	console.log(lists);
 
 	const handleDeleteMode = () => setDeleteMode(!deleteMode);
 
